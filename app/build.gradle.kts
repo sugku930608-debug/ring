@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "com.example.galaxyringremote"
+    namespace = "com.galaxyring.remote"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.galaxyringremote"
-        minSdk = 31
+        applicationId = "com.galaxyring.remote"
+        minSdk = 28
         targetSdk = 35
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.2.1"
     }
 
     compileOptions {

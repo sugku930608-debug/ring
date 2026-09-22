@@ -1,32 +1,31 @@
-# Galaxy Ring Shorts Remote v0.2
+# Galaxy Ring Shorts Remote v2.1
 
-Experimental Android app: Galaxy Ring **Double Pinch → next YouTube Shorts / Instagram Reels / TikTok video**.
+Galaxy Ring **Double Pinch -> next Shorts/Reels/TikTok** Android prototype.
 
-## What is included
-- Actual BLE connection to an already-paired Galaxy Ring
-- Channel 22 gesture enable command and pinch notification handling
-- Android AccessibilityService vertical swipe
-- Foreground ring-monitor service with reconnect
-- Phone-friendly GitHub Actions APK build
-
-## Before use
-The ring must already be paired with the phone using Galaxy Wearable / Android Bluetooth.
+## v2.1 changes
+- New package id: `com.galaxyring.remote` to avoid package/signature conflicts.
+- `minSdk` lowered to 28; runtime Bluetooth permissions are version-aware.
+- Manifest cleaned up for newer Samsung/Android devices.
+- GitHub Actions now checks that the APK exists, prints SHA-256, and verifies the APK signature before uploading it.
+- Artifact name: `GalaxyRingRemote-v2.1-debug-apk`.
 
 ## Phone-only build
-1. Upload the extracted project contents to the root of your GitHub repository.
-2. Open **Actions → Build Android APK**.
-3. Tap **Run workflow** (or wait for the push build).
-4. Open the finished run.
-5. Download artifact **GalaxyRingRemote-debug-apk**.
-6. Extract the downloaded artifact ZIP and install `app-debug.apk`.
+1. Upload this project's **contents** to the root of your GitHub repository.
+2. Open **Actions -> Build Android APK -> Run workflow**.
+3. Open the completed run and download **GalaxyRingRemote-v2.1-debug-apk**.
+4. Extract the artifact ZIP and install `app-debug.apk`.
+5. Grant Nearby devices/Bluetooth permission.
+6. Enable **Ring Shorts Remote** under Android Accessibility settings.
+7. Start Ring monitoring in the app.
+8. Open YouTube Shorts / Instagram Reels / TikTok and double-pinch.
 
-## App setup
-1. Tap **권한 허용** and allow Nearby devices/Bluetooth (and notifications if asked).
-2. Tap **접근성 설정 열기** and enable `Ring Shorts Remote`.
-3. Tap **Ring 모니터링 시작**.
-4. When status says `Ring 연결됨 · Double Pinch 대기 중`, open Shorts/Reels/TikTok and double-pinch.
+## Samsung installation note
+If Android still says only **"App not installed"** even though installation from the browser/My Files is allowed, check Samsung **Settings -> Security and privacy -> Auto Blocker**. Auto Blocker can reject sideloaded APKs separately from the normal "Install unknown apps" permission. Turn it off temporarily only for this test, install the APK, then you can turn it back on.
 
-## Notes
-- This is experimental and relies on a reverse-engineered Galaxy Ring BLE protocol. Samsung firmware updates can change behavior.
-- Gesture monitoring may increase ring battery use. Use the **모니터링 중지** button when you do not need it.
-- Some Samsung firmware may temporarily disable gesture detection; if it stops responding, stop/start monitoring once.
+## Important
+- The Galaxy Ring must already be paired with the phone.
+- BLE gesture handling is experimental and may change with Samsung firmware updates.
+- Gesture monitoring may increase ring battery usage; stop monitoring when it is not needed.
+
+## Open-source attribution
+The Galaxy Ring BLE protocol approach is adapted from SamsungOpenRing by TheVellichor under the MIT License. See `THIRD_PARTY_LICENSES.md`.
